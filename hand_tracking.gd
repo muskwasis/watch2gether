@@ -20,13 +20,37 @@ func setup():
 		hand_mesh.add_child(hand_modifier)
 		
 		# Add physics capsules to fingertips
-		setup_fingertip_colliders(hand_mesh, hand)
+		setup_fingertip_colliders_deferred(hand_mesh, hand)
 
-func setup_fingertip_colliders(hand_mesh: Node3D, hand: String):
+func setup_fingertip_colliders_deferred(hand_mesh: OpenXRFbHandTrackingMesh, hand: String):
+	# OpenXRFbHandTrackingMesh generates its skeleton internally
+	# We need to search for it recursively
+	var skeleton = find_skeleton_recursive(hand_mesh)
+	
+	if skeleton:
+		setup_fingertip_colliders(skeleton, hand)
+	else:
+		# Wait and try again
+		await get_tree().create_timer(0.5).timeout
+		skeleton = find_skeleton_recursive(hand_mesh)
+		if skeleton:
+			setup_fingertip_colliders(skeleton, hand)
+		else:
+			print("Warning: Could not find skeleton for " + hand + " hand")
+
+func find_skeleton_recursive(node: Node) -> Skeleton3D:
+	if node is Skeleton3D:
+		return node
+	for child in node.get_children():
+		var result = find_skeleton_recursive(child)
+		if result:
+			return result
+	return null
+
+func setup_fingertip_colliders(skeleton: Skeleton3D, hand: String):
 	# Get the skeleton from the hand mesh
-	var skeleton = hand_mesh.get_node_or_null("Skeleton3D")
 	if not skeleton:
-		print("Warning: No skeleton found in hand mesh for " + hand + " hand")
+		print("Warning: No skeleton provided for " + hand + " hand")
 		return
 	
 	# Fingertip bone names in OpenXR hand skeleton
