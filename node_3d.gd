@@ -11,7 +11,7 @@ func _ready():
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 		# Change our main viewport to output to the HMD
 		get_viewport().use_xr = true
-		place_capsules()
+		# place_capsules()
 	create_ground_plane()
 	spawn_cubes()
 	
