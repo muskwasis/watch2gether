@@ -11,8 +11,10 @@ func _ready():
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 		# Change our main viewport to output to the HMD
 		get_viewport().use_xr = true
-		create_hand_trackers()
-		# place_capsules()
+		# setup the hands
+		var hand_manager = HandTrackingManager.new()
+		add_child(hand_manager)
+		hand_manager.setup()
 	await get_tree().create_timer(3.0).timeout
 	create_ground_plane()
 	spawn_cubes()
@@ -24,25 +26,6 @@ func _ready():
 @export var cube_size: Vector3 = Vector3(.1, .1, .1)
 @export var cube_material: StandardMaterial3D
 @export var ground_size: Vector2 = Vector2(8, 8)
-
-func create_hand_trackers():
-	for hand in ["left", "right"]:
-		# Create hand tracker
-		var hand_tracker = XRNode3D.new()
-		hand_tracker.name = hand.capitalize() + "HandTracker"
-		hand_tracker.tracker = "/user/hand_tracker/" + hand
-		hand_tracker.show_when_tracked = true
-		add_child(hand_tracker)
-		
-		# this like, works
-		var hand_mesh = OpenXRFbHandTrackingMesh.new()
-		hand_mesh.name = "OpenXRFbHandTrackingMesh"
-		hand_mesh.hand = 0 if hand == "left" else 1
-		hand_tracker.add_child(hand_mesh)
-		
-		var hand_modifier = XRHandModifier3D.new()
-		hand_modifier.hand_tracker = "/user/hand_tracker/" + hand
-		hand_mesh.add_child(hand_modifier)
 		
 func create_ground_plane():
 	# Create StaticBody3D for the ground
