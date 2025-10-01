@@ -40,7 +40,12 @@ func create_hand_trackers():
 		
 		var hand_modifier = XRHandModifier3D.new()
 		hand_modifier.hand_tracker = "/user/hand_tracker/" + hand
-		hand_mesh.add_child(hand_modifier)
+		hand_modifier.bone_update = NodePath("OpenXRFbHandTrackingMesh/Skeleton3D")
+		hand_tracker.add_child(hand_modifier)
+		
+		#var hand_modifier = XRHandModifier3D.new()
+		#hand_modifier.hand_tracker = "/user/hand_tracker/" + hand
+		#hand_mesh.add_child(hand_modifier)
 		
 func create_ground_plane():
 	# Create StaticBody3D for the ground
