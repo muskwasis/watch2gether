@@ -4,6 +4,11 @@
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_a202f")
+cube_count = null
+spawn_area_size = null
+spawn_height = null
+cube_size = null
+ground_size = null
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
