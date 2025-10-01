@@ -31,26 +31,16 @@ func create_hand_trackers():
 	left_hand_tracker.tracker = "/user/hand_tracker/left"
 	left_hand_tracker.show_when_tracked = true
 	add_child(left_hand_tracker)
-	
-	# Create right hand tracker
+	var left_hand_modifier = XRHandModifier3D.new()
+	left_hand_modifier.hand_tracker = "/user/hand_tracker/left"
+
 	var right_hand_tracker = XRNode3D.new()
 	right_hand_tracker.name = "RightHandTracker"
 	right_hand_tracker.tracker = "/user/hand_tracker/right"
 	right_hand_tracker.show_when_tracked = true
 	add_child(right_hand_tracker)
-	
-	# Add hand modifiers for real-time mesh updates
-#	setup_hand_modifier(left_hand_tracker, XRHandModifier3D.HAND_LEFT)
-#	setup_hand_modifier(right_hand_tracker, XRHandModifier3D.HAND_RIGHT)
-
-func setup_hand_modifier(hand_tracker: XRNode3D, hand_type: int):
-	# Create the hand modifier
-	var hand_modifier = XRHandModifier3D.new()
-	hand_modifier.hand_tracker = hand_type
-	# You'll need to set the bone_update property to point to your hand mesh skeleton
-	# This assumes you have hand meshes as children with skeletons
-	# hand_modifier.bone_update = NodePath("HandMesh/Skeleton3D")
-	hand_tracker.add_child(hand_modifier)	
+	var right_hand_modifier = XRHandModifier3D.new()
+	right_hand_modifier.hand_tracker = "/user/hand_tracker/right"
 
 func create_ground_plane():
 	# Create StaticBody3D for the ground
