@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="watch2gether"
+run/main_scene="uid://bm2tpd5x76ox4"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
