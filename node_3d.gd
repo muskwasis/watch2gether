@@ -40,8 +40,8 @@ func create_hand_trackers():
 	add_child(right_hand_tracker)
 	
 	# Add hand modifiers for real-time mesh updates
-	setup_hand_modifier(left_hand_tracker, XRHandModifier3D.HAND_LEFT)
-	setup_hand_modifier(right_hand_tracker, XRHandModifier3D.HAND_RIGHT)
+#	setup_hand_modifier(left_hand_tracker, XRHandModifier3D.HAND_LEFT)
+#	setup_hand_modifier(right_hand_tracker, XRHandModifier3D.HAND_RIGHT)
 
 func setup_hand_modifier(hand_tracker: XRNode3D, hand_type: int):
 	# Create the hand modifier
