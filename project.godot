@@ -80,6 +80,7 @@ META_ENVIRONMENT_DEPTH_TO_CAMERA_PROJECTION_RIGHT={
 openxr/enabled=true
 openxr/foveation_level=3
 openxr/foveation_dynamic=true
+openxr/startup_alert=false
 openxr/extensions/hand_tracking=true
 openxr/extensions/hand_tracking_unobstructed_data_source=true
 openxr/extensions/hand_tracking_controller_data_source=true
