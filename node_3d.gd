@@ -26,21 +26,19 @@ func _ready():
 @export var ground_size: Vector2 = Vector2(8, 8)
 
 func create_hand_trackers():
-	var left_hand_tracker = XRNode3D.new()
-	left_hand_tracker.name = "LeftHandTracker"
-	left_hand_tracker.tracker = "/user/hand_tracker/left"
-	left_hand_tracker.show_when_tracked = true
-	add_child(left_hand_tracker)
-	var left_hand_modifier = XRHandModifier3D.new()
-	left_hand_modifier.hand_tracker = "/user/hand_tracker/left"
-
-	var right_hand_tracker = XRNode3D.new()
-	right_hand_tracker.name = "RightHandTracker"
-	right_hand_tracker.tracker = "/user/hand_tracker/right"
-	right_hand_tracker.show_when_tracked = true
-	add_child(right_hand_tracker)
-	var right_hand_modifier = XRHandModifier3D.new()
-	right_hand_modifier.hand_tracker = "/user/hand_tracker/right"
+	for hand in ["left", "right"]:
+		# Create hand tracker
+		var hand_tracker = XRNode3D.new()
+		hand_tracker.name = hand.capitalize() + "HandTracker"
+		hand_tracker.tracker = "/user/hand_tracker/" + hand
+		hand_tracker.show_when_tracked = true
+		add_child(hand_tracker)
+		
+		# Add hand modifier for real-time mesh updates
+		# OpenXR will provide the hand mesh automatically
+		var hand_modifier = XRHandModifier3D.new()
+		hand_modifier.hand_tracker = "/user/hand_tracker/" + hand
+		hand_tracker.add_child(hand_modifier)
 
 func create_ground_plane():
 	# Create StaticBody3D for the ground
