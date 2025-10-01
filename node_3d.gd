@@ -39,7 +39,11 @@ func create_hand_trackers():
 		var hand_modifier = XRHandModifier3D.new()
 		hand_modifier.hand_tracker = "/user/hand_tracker/" + hand
 		hand_tracker.add_child(hand_modifier)
-
+		
+		var hand_mesh = OpenXRFbHandTrackingMesh.new()
+		hand_mesh.name = "OpenXRFbHandTrackingMesh"
+		hand_tracker.add_child(hand_mesh)
+		
 func create_ground_plane():
 	# Create StaticBody3D for the ground
 	var static_body = StaticBody3D.new()
