@@ -36,6 +36,7 @@ func create_hand_trackers():
 		
 		var hand_mesh = OpenXRFbHandTrackingMesh.new()
 		hand_mesh.name = "OpenXRFbHandTrackingMesh"
+		hand_mesh.hand = 0 if hand == "left" else 1
 		hand_tracker.add_child(hand_mesh)
 		
 		var hand_modifier = XRHandModifier3D.new()
