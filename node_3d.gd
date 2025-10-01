@@ -12,6 +12,7 @@ func _ready():
 		# Change our main viewport to output to the HMD
 		get_viewport().use_xr = true
 		# place_capsules()
+	await get_tree().create_timer(3.0).timeout
 	create_ground_plane()
 	spawn_cubes()
 	

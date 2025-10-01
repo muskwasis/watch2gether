@@ -19,7 +19,8 @@ config/icon="res://icon.svg"
 
 3d/run_on_separate_thread=true
 common/physics_ticks_per_second=40
-jolt_physics_3d/limits/temporary_memory_buffer_size=8
+3d/physics_engine="Jolt Physics"
+jolt_physics_3d/limits/temporary_memory_buffer_size=7
 jolt_physics_3d/limits/max_linear_velocity=60.0
 jolt_physics_3d/limits/max_bodies=1024
 jolt_physics_3d/limits/max_body_pairs=7000
