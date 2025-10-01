@@ -34,15 +34,13 @@ func create_hand_trackers():
 		hand_tracker.show_when_tracked = true
 		add_child(hand_tracker)
 		
-		# Add hand modifier for real-time mesh updates
-		# OpenXR will provide the hand mesh automatically
-		var hand_modifier = XRHandModifier3D.new()
-		hand_modifier.hand_tracker = "/user/hand_tracker/" + hand
-		hand_tracker.add_child(hand_modifier)
-		
 		var hand_mesh = OpenXRFbHandTrackingMesh.new()
 		hand_mesh.name = "OpenXRFbHandTrackingMesh"
 		hand_tracker.add_child(hand_mesh)
+		
+		var hand_modifier = XRHandModifier3D.new()
+		hand_modifier.hand_tracker = "/user/hand_tracker/" + hand
+		hand_mesh.add_child(hand_modifier)
 		
 func create_ground_plane():
 	# Create StaticBody3D for the ground
