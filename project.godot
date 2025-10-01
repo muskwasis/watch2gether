@@ -1,0 +1,91 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="watch2gether"
+config/features=PackedStringArray("4.5", "Mobile")
+config/icon="res://icon.svg"
+
+[physics]
+
+3d/run_on_separate_thread=true
+common/physics_ticks_per_second=40
+jolt_physics_3d/limits/temporary_memory_buffer_size=8
+jolt_physics_3d/limits/max_linear_velocity=60.0
+jolt_physics_3d/limits/max_bodies=1024
+jolt_physics_3d/limits/max_body_pairs=7000
+jolt_physics_3d/limits/max_contact_constraints=7000
+3d/default_gravity=8.0
+common/physics_interpolation=true
+
+[rendering]
+
+renderer/rendering_method="mobile"
+occlusion_culling/use_occlusion_culling=true
+mesh_lod/lod_change/threshold_pixels=4.0
+
+[shader_globals]
+
+META_ENVIRONMENT_DEPTH_AVAILABLE={
+"type": "bool",
+"value": false
+}
+META_ENVIRONMENT_DEPTH_TEXTURE={
+"type": "sampler2DArray",
+"value": ""
+}
+META_ENVIRONMENT_DEPTH_PROJECTION_VIEW_LEFT={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+META_ENVIRONMENT_DEPTH_PROJECTION_VIEW_RIGHT={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+META_ENVIRONMENT_DEPTH_INV_PROJECTION_VIEW_LEFT={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+META_ENVIRONMENT_DEPTH_INV_PROJECTION_VIEW_RIGHT={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+META_ENVIRONMENT_DEPTH_FROM_CAMERA_PROJECTION_LEFT={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+META_ENVIRONMENT_DEPTH_FROM_CAMERA_PROJECTION_RIGHT={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+META_ENVIRONMENT_DEPTH_TO_CAMERA_PROJECTION_LEFT={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+META_ENVIRONMENT_DEPTH_TO_CAMERA_PROJECTION_RIGHT={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+
+[xr]
+
+openxr/enabled=true
+openxr/foveation_level=3
+openxr/foveation_dynamic=true
+openxr/extensions/hand_tracking=true
+openxr/extensions/hand_tracking_unobstructed_data_source=true
+openxr/extensions/hand_tracking_controller_data_source=true
+openxr/extensions/hand_interaction_profile=true
+shaders/enabled=true
+openxr/extensions/meta/hand_tracking_aim=true
+openxr/extensions/meta/hand_tracking_mesh=true
+openxr/extensions/meta/hand_tracking_capsules=true
+openxr/extensions/meta/application_space_warp=true
