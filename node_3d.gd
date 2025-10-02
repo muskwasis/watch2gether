@@ -19,6 +19,7 @@ func _ready():
 	create_ground_plane()
 	spawn_cubes()
 	if isvr:
+		print_tree_pretty()
 		var hand_mesh = $XROrigin3D/LeftHandTracker/OpenXRFbHandTrackingMesh
 		# Print all properties
 		for property in hand_mesh.get_property_list():
