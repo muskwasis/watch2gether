@@ -29,7 +29,7 @@ func _ready():
 		print("Material: ", hand_mesh.material)
 
 # Configuration variables
-@export var cube_count: int = 1022
+@export var cube_count: int = 4
 @export var spawn_area_size: Vector3 = Vector3(0.5, 5, 0.5)
 @export var spawn_height: float = 10.0
 @export var cube_size: Vector3 = Vector3(.1, .1, .1)
