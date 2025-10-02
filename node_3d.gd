@@ -24,14 +24,9 @@ func _ready():
 		# Print all properties
 		for property in hand_mesh.get_property_list():
 			print(property.name, ": ", hand_mesh.get(property.name))
-			
-		var fb_capsule_ext
-		fb_capsule_ext = Engine.get_singleton("OpenXRFbHandTrackingCapsulesExtensionWrapper")
-# Or check a specific property
-		print("Material: ", hand_mesh.material)
 
 # Configuration variables
-@export var cube_count: int = 4
+@export var cube_count: int = 1023
 @export var spawn_area_size: Vector3 = Vector3(0.5, 5, 0.5)
 @export var spawn_height: float = 10.0
 @export var cube_size: Vector3 = Vector3(.1, .1, .1)

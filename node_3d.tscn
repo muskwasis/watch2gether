@@ -6,6 +6,12 @@
 script/source = "extends XROrigin3D
 
 func _ready():
+	var capsules_wrapper = OpenXRFbHandTrackingCapsulesExtensionWrapper
+	
+	# Check if it's available
+	if capsules_wrapper and capsules_wrapper.is_enabled():
+		print(\"Hand tracking capsules extension is available!\")
+		
 	for hand in [\"left\", \"right\"]:
 		# Create hand tracker
 		var hand_tracker = XRNode3D.new()
