@@ -24,7 +24,9 @@ func _ready():
 		# Print all properties
 		for property in hand_mesh.get_property_list():
 			print(property.name, ": ", hand_mesh.get(property.name))
-
+			
+		var fb_capsule_ext
+		fb_capsule_ext = Engine.get_singleton("OpenXRFbHandTrackingCapsulesExtensionWrapper")
 # Or check a specific property
 		print("Material: ", hand_mesh.material)
 
