@@ -27,6 +27,7 @@ jolt_physics_3d/limits/max_body_pairs=7000
 jolt_physics_3d/limits/max_contact_constraints=7000
 3d/default_gravity=8.0
 common/physics_interpolation=true
+common/enable_object_picking=false
 
 [rendering]
 
