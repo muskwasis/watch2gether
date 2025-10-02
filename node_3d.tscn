@@ -23,12 +23,49 @@ func _ready():
 		hand_modifier.hand_tracker = \"/user/hand_tracker/\" + hand
 		hand_mesh.add_child(hand_modifier)
 		
-	print(\"Available hand joint constants:\")
-	var constants = ClassDB.class_get_integer_constant_list(\"XRHandTracker\", true)
-	for constant in constants:
-		if constant.begins_with(\"HAND_JOINT_\"):
-			var value = ClassDB.class_get_integer_constant(\"XRHandTracker\", constant)
-			print(\"  \", constant, \" = \", value)
+		# Add index finger tip capsule
+		create_finger_capsule(hand_tracker, hand)
+
+func create_finger_capsule(hand_tracker: XRNode3D, hand_name: String):
+	# Create a Node3D that will follow the index finger tip
+	var finger_marker = Node3D.new()
+	finger_marker.name = \"IndexFingerTipMarker\"
+	hand_tracker.add_child(finger_marker)
+	
+	# Add XRHandModifier3D to make it follow the index finger tip joint
+	var hand_modifier = XRHandModifier3D.new()
+	hand_modifier.hand_tracker = \"/user/hand_tracker/\" + hand_name
+	hand_modifier.bone_update = XRHandModifier3D.BONE_UPDATE_FULL
+	hand_modifier.bone = XRHandTracker.HAND_JOINT_INDEX_FINGER_TIP  # Index finger tip
+	finger_marker.add_child(hand_modifier)
+	
+	# Create the collision body
+	var capsule_body = StaticBody3D.new()
+	capsule_body.name = \"IndexFingerCapsule\"
+	finger_marker.add_child(capsule_body)
+	
+	# Add collision shape
+	var collision_shape = CollisionShape3D.new()
+	var capsule_shape = CapsuleShape3D.new()
+	capsule_shape.radius = 0.01  # 10mm radius
+	capsule_shape.height = 0.03  # 30mm height
+	collision_shape.shape = capsule_shape
+	capsule_body.add_child(collision_shape)
+	
+	# Add visual mesh
+	var mesh_instance = MeshInstance3D.new()
+	var capsule_mesh = CapsuleMesh.new()
+	capsule_mesh.radius = 0.01
+	capsule_mesh.height = 0.03
+	mesh_instance.mesh = capsule_mesh
+	
+	# Make it visible with a nice color
+	var material = StandardMaterial3D.new()
+	material.albedo_color = Color(1.0, 0.3, 0.3, 0.7)  # Semi-transparent red
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mesh_instance.material_override = material
+	
+	capsule_body.add_child(mesh_instance)
 "
 
 [node name="Node3D" type="Node3D"]
