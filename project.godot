@@ -93,3 +93,4 @@ openxr/extensions/meta/hand_tracking_mesh=true
 openxr/extensions/meta/hand_tracking_capsules=true
 openxr/extensions/meta/application_space_warp=true
 openxr/extensions/meta/passthrough=true
+openxr/extensions/meta/color_space/starting_color_space=3
