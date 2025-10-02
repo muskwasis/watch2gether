@@ -1,11 +1,11 @@
 extends Node3D
-
 var xr_interface: XRInterface
-var fb_capsule_ext
+var isvr = false
 
 func _ready():
 	xr_interface = XRServer.find_interface("OpenXR")
 	if xr_interface and xr_interface.is_initialized():
+		isvr = true
 		print("OpenXR initialized successfully")
 		# Turn off v-sync!
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
@@ -18,7 +18,15 @@ func _ready():
 	await get_tree().create_timer(3.0).timeout
 	create_ground_plane()
 	spawn_cubes()
-	
+	if isvr:
+		var hand_mesh = $OpenXRFbHandTrackingMesh
+		# Print all properties
+		for property in hand_mesh.get_property_list():
+			print(property.name, ": ", hand_mesh.get(property.name))
+
+# Or check a specific property
+		print("Material: ", hand_mesh.material)
+
 # Configuration variables
 @export var cube_count: int = 1022
 @export var spawn_area_size: Vector3 = Vector3(0.5, 5, 0.5)
