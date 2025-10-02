@@ -1,5 +1,5 @@
 class_name HandTrackingManager
-extends Node3D
+extends XROrigin3D
 
 func setup():
 	for hand in ["left", "right"]:
