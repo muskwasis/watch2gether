@@ -23,38 +23,12 @@ func _ready():
 		hand_modifier.hand_tracker = \"/user/hand_tracker/\" + hand
 		hand_mesh.add_child(hand_modifier)
 		
-		# Create capsule collision bodies
-	print(\"=== Inspecting OpenXRFbHandTrackingCapsulesExtensionWrapper ===\")
-	
-	# Check if it exists as a singleton
-	if Engine.has_singleton(\"OpenXRFbHandTrackingCapsulesExtensionWrapper\"):
-		print(\"Found as Engine singleton!\")
-		var capsules_extension = Engine.get_singleton(\"OpenXRFbHandTrackingCapsulesExtensionWrapper\")
-		print(\"Type: \", typeof(capsules_extension))
-		print(\"Class: \", capsules_extension.get_class() if capsules_extension else \"null\")
-		
-		# List all methods
-		print(\"\\nAvailable methods:\")
-		for method in capsules_extension.get_method_list():
-			print(\"  - \", method.name)
-		
-		# List all properties
-		print(\"\\nAvailable properties:\")
-		for property in capsules_extension.get_property_list():
-			print(\"  - \", property.name, \" (\", property.type, \")\")
-	else:
-		print(\"Not found as Engine singleton\")
-	
-	# Try accessing it directly as a class
-	print(\"\\n=== Trying direct class access ===\")
-	if ClassDB.class_exists(\"OpenXRFbHandTrackingCapsulesExtensionWrapper\"):
-		print(\"Class exists in ClassDB\")
-		var methods = ClassDB.class_get_method_list(\"OpenXRFbHandTrackingCapsulesExtensionWrapper\", true)
-		print(\"Methods:\")
-		for method in methods:
-			print(\"  - \", method.name)
-	else:
-		print(\"Class not found in ClassDB\")
+	print(\"Available hand joint constants:\")
+	var constants = ClassDB.class_get_integer_constant_list(\"XRHandTracker\", true)
+	for constant in constants:
+		if constant.begins_with(\"HAND_JOINT_\"):
+			var value = ClassDB.class_get_integer_constant(\"XRHandTracker\", constant)
+			print(\"  \", constant, \" = \", value)
 "
 
 [node name="Node3D" type="Node3D"]
