@@ -1,11 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bm2tpd5x76ox4"]
+[gd_scene load_steps=3 format=3 uid="uid://bm2tpd5x76ox4"]
 
 [ext_resource type="Script" uid="uid://bp117jqlwtxer" path="res://node_3d.gd" id="1_a202f"]
+
+[sub_resource type="GDScript" id="GDScript_a202f"]
+script/source = "tends XROrigin3D
+"
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_a202f")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
+script = SubResource("GDScript_a202f")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 0.953675, 0.30083895, 0, -0.30083895, 0.953675, 0, 0.8028079, 1.258544)
